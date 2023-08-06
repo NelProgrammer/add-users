@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import CSS_AddUder from './AddUser.module.css';
+import CSS_AddUser from './AddUser.module.css';
 
 import ErrorModal from '../ErrorModal/ErrorModal';
 
@@ -57,34 +57,34 @@ const AddUser = (props) => {
   };
 
   return (
-    <div className={CSS_AddUder.AddUser}>
+    <div className={CSS_AddUser.AddUser}>
       {isError === true && <ErrorModal />}
       {isError === false && (
         <form onSubmit={handle_formsubmit}>
-          <div className={CSS_AddUder.InputDiv}>
-            <label htmlFor="userNameInput" className={CSS_AddUder.InputLabel}>
+          <div className={CSS_AddUser.InputDiv}>
+            <label htmlFor="userNameInput" className={CSS_AddUser.InputLabel}>
               <p>User Name</p>
             </label>
             <input
               type="text"
               id="userNameInput"
-              className={CSS_AddUder.InputBox}
+              className={CSS_AddUser.InputBox}
               onChange={handleChangeUserName}
             />
           </div>
-          <div className={CSS_AddUder.InputDiv}>
-            <label htmlFor="userAgeInput" className={CSS_AddUder.InputLabel}>
+          <div className={CSS_AddUser.InputDiv}>
+            <label htmlFor="userAgeInput" className={CSS_AddUser.InputLabel}>
               <p>User Age</p>
             </label>
             <input
               type="number"
               id="userAgeInput"
-              className={CSS_AddUder.InputBox}
+              className={CSS_AddUser.InputBox}
               onChange={handleChangeUserAge}
             />
           </div>
           <div>
-            <button className={CSS_AddUder.InputButton}>Add User</button>
+            <button className={CSS_AddUser.InputButton}>Add User</button>
           </div>
         </form>
       )}
