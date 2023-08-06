@@ -24,14 +24,6 @@
   font-weight: bold;
 }
 
-.InputButton {
-  margin: 5px;
-  padding: 2px;
-  font-weight: bold;
-  background-color: rgb(46, 100, 148);
-  color: antiquewhite;
-}
-
 .AddUser input:hover {
   outline: none;
   background: antiquewhite;
@@ -42,12 +34,4 @@
   outline: none;
   background: white;
   border-color: #d3a4dc;
-}
-
-.InputButton:hover {
-  background: #741188;
-  border-color: #3013c4;
-}
-.InputButton:hover {
-  outline: none;
 }

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import CSS_AddUser from './AddUser.module.css';
 
 import ErrorModal from '../ErrorModal/ErrorModal';
+import Button from '../Button/Button';
 
 const AddUser = (props) => {
   const [enteredUserName, setEnteredUserName] = useState('');
@@ -84,7 +85,7 @@ const AddUser = (props) => {
             />
           </div>
           <div>
-            <button className={CSS_AddUser.InputButton}>Add User</button>
+            <Button type="submit">Add User</Button>
           </div>
         </form>
       )}
