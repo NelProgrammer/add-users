@@ -1,0 +1,26 @@
+.AddUser {
+  background-color: rgb(7, 138, 138);
+  padding: 1px;
+  margin: 5px;
+}
+.InputDiv {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  margin: 2px;
+}
+
+.InputLabel {
+  padding: 5px;
+  margin: 2px;
+  font-weight: bold;
+}
+.InputButton {
+  margin: 5px;
+  padding: 2px;
+  font-weight: bold;
+}
+.AddUser input:focus {
+  outline: none;
+  border-color: #4f005f;
+}
