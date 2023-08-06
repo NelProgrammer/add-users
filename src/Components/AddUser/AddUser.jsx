@@ -68,6 +68,7 @@ const AddUser = (props) => {
             <input
               type="text"
               id="userNameInput"
+              className={CSS_AddUder.InputBox}
               onChange={handleChangeUserName}
             />
           </div>
@@ -78,6 +79,7 @@ const AddUser = (props) => {
             <input
               type="number"
               id="userAgeInput"
+              className={CSS_AddUder.InputBox}
               onChange={handleChangeUserAge}
             />
           </div>

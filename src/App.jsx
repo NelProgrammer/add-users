@@ -18,7 +18,9 @@ const App = () => {
     <div className={CSS_App.App}>
       <Card>
         <AddUser usersList={users} setUsers={setUsers} />
-        {users === undefined && <div>Nothing</div>}
+      </Card>
+      <Card>
+        {users === undefined && <div className={CSS_App.NoOutput}>Nothing</div>}
         {users !== undefined && <OutputUsers usersList={users} />}
       </Card>
     </div>
