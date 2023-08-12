@@ -2,14 +2,13 @@
 .ErrorModal {
   display: block; /* Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
+  z-index: 100; /* Sit on top */
+  left: 10;
+  top: 10;
+  width: auto; /* Full width */
+  height: auto; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  background-color: rgb(148, 134, 146); /* Fallback color */
   -webkit-animation-name: fadeIn; /* Fade in the background */
   -webkit-animation-duration: 0.4s;
   animation-name: fadeIn;
@@ -21,11 +20,12 @@
   position: fixed;
   bottom: 0;
   background-color: #fefefe;
-  width: 100%;
   -webkit-animation-name: slideIn;
   -webkit-animation-duration: 0.4s;
   animation-name: slideIn;
   animation-duration: 0.4s;
+  width: auto;
+  height: auto;
 }
 
 /* The Close Button */
@@ -47,13 +47,19 @@
   padding: 2px 16px;
   background-color: #5cb85c;
   color: white;
+  width: auto;
+  height: auto;
 }
 
 .modal-body {
   padding: 2px 16px;
+  width: auto;
+  height: auto;
 }
 
 .modal-footer {
+  width: auto;
+  height: auto;
   padding: 2px 16px;
   background-color: #5cb85c;
   color: white;

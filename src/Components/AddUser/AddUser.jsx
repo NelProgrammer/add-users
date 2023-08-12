@@ -21,8 +21,9 @@ const AddUser = (props) => {
       TestUser2Add.userAge === '' ||
       isNaN(TestUser2Add.userAge) ||
       TestUser2Add.userName === undefined ||
-      TestUser2Add.userName === ''
+      TestUser2Add.userName.trim().length === 0
     ) {
+      setIsError(true);
       <ErrorModal displayModal={true} />;
     } else {
       const user2Add = {
@@ -35,11 +36,13 @@ const AddUser = (props) => {
         prevUsersList === undefined ? [user2Add] : [...prevUsersList, user2Add]
       );
     }
+    setEnteredUserName('');
+    setEnteredUseAge('');
   };
 
   const handleChangeUserName = (event) => {
     const input = event.target.value;
-    if (!input || input === '') {
+    if (input === undefined || input.trim().length === 0) {
       setIsError(true);
     } else {
       setIsError(false);
@@ -49,7 +52,7 @@ const AddUser = (props) => {
 
   const handleChangeUserAge = (event) => {
     const input = event.target.value;
-    if (isNaN(+input) || input === 0) {
+    if (isNaN(input) || input === 0) {
       setIsError(true);
     } else {
       setIsError(false);

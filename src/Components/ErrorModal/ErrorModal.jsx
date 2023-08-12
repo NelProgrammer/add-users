@@ -1,35 +1,40 @@
 import { useState } from 'react';
 import CSS_ErrorModal from './ErrorModal.module.css';
 
+import Button from '../Button/Button';
+
 const ErrorModal = (props) => {
   // const [modalStatus,setModalStatus] = useState(()=>(props.displayModal==true?'block':'none'));
   const handleModalClose = (event) => {
     // When the user clicks on <span> (x), close the modal
-    event.target.style.display = 'none';
+    event.target.parent.style.display = 'none';
+    event.target.parent.style.zindex = 0;
   };
 
   const handleModalOpen = (event) => {
     // When the user clicks on <span> (x), close the modal
-    event.target.style.display = 'block';
+    event.target.props.parent.props.style.display = 'block';
+    event.target.props.parent.props.style.zindex = 100;
   };
 
   return (
     <div className={CSS_ErrorModal.ErrorModal}>
-      <div id="myModal" className="modal">
-        <div className="modal-content">
-          <div className="modal-header">
-            <h2>Modal Header:Error</h2>
+      <div id="myModal" className={CSS_ErrorModal['modal']}>
+        <div className={CSS_ErrorModal['modal-content']}>
+          <div className={CSS_ErrorModal['modal-header']}>
+            Modal Header: Error ...
           </div>
           <div className="modal-body">
-            <p>Input Error...</p>
-            <span className="close" onClick={handleModalClose}>
-              &Okay;
-            </span>
+            <p>Input Error...!</p>
+            <Button className="close" type="abort" onClick={handleModalClose}>
+              Okay
+            </Button>
+            {/* <span className="close" onClick={handleModalClose}>
+              Okay;
+            </span> */}
           </div>
 
-          <div className="modal-footer">
-            <h5>Modal Footer</h5>
-          </div>
+          <div className={CSS_ErrorModal['modal-footer']}>Modal Footer</div>
         </div>
       </div>
     </div>
