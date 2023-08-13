@@ -10,6 +10,7 @@ const ErrorModal = (props) => {
     let currentT = event.target.parentNode.parentNode.parentNode;
     currentT.style.display = 'none';
     currentT.style.zIndex = 0;
+    props.setInputError(null);
   };
 
   const handleModalOpen = (event) => {

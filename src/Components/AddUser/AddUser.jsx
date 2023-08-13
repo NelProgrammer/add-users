@@ -50,9 +50,9 @@ const AddUser = (props) => {
               },
             ]
       );
+      setEnteredUserName('');
+      setEnteredUserAge('');
     }
-    setEnteredUserName('');
-    setEnteredUserAge('');
   };
 
   const handleChangeUserName = (event) => {
@@ -85,6 +85,7 @@ const AddUser = (props) => {
               <input
                 type="text"
                 id="userNameInput"
+                value={enteredUserName}
                 className={CSS_AddUser.InputBox}
                 onChange={handleChangeUserName}
               />
@@ -96,6 +97,7 @@ const AddUser = (props) => {
               <input
                 type="number"
                 id="userAgeInput"
+                value={enteredUserAge}
                 className={CSS_AddUser.InputBox}
                 onChange={handleChangeUserAge}
               />
@@ -112,6 +114,7 @@ const AddUser = (props) => {
           errorTitle={inputError.errorTitle}
           errorMsg={inputError.errorMsg}
           errorEntry={inputError.errorEntry}
+          setInputError={setInputError}
         />
       )}
     </div>
