@@ -7,8 +7,9 @@ const ErrorModal = (props) => {
   // const [modalStatus,setModalStatus] = useState(()=>(props.displayModal==true?'block':'none'));
   const handleModalClose = (event) => {
     // When the user clicks on <span> (x), close the modal
-    event.target.parent.style.display = 'none';
-    event.target.parent.style.zindex = 0;
+    let currentT = event.target.parentNode.parentNode.parentNode;
+    currentT.style.display = 'none';
+    currentT.style.zIndex = 0;
   };
 
   const handleModalOpen = (event) => {
@@ -19,22 +20,16 @@ const ErrorModal = (props) => {
 
   return (
     <div className={CSS_ErrorModal.ErrorModal}>
-      <div id="myModal" className={CSS_ErrorModal['modal']}>
-        <div className={CSS_ErrorModal['modal-content']}>
-          <div className={CSS_ErrorModal['modal-header']}>
-            Modal Header: Error ...
-          </div>
-          <div className="modal-body">
-            <p>Input Error...!</p>
-            <Button className="close" type="abort" onClick={handleModalClose}>
-              Okay
-            </Button>
-            {/* <span className="close" onClick={handleModalClose}>
-              Okay;
-            </span> */}
-          </div>
-
-          <div className={CSS_ErrorModal['modal-footer']}>Modal Footer</div>
+      <div className={CSS_ErrorModal['modal-content']}>
+        <div className={CSS_ErrorModal['modal-header']}>{props.errorTitle}</div>
+        <div className={CSS_ErrorModal['modal-body']}>
+          <div>{props.errorMsg}</div>
+          <div>You Entered: {props.errorEntry}</div>
+        </div>
+        <div className={CSS_ErrorModal['modal-footer']}>
+          <Button className="close" type="abort" onClick={handleModalClose}>
+            Dismiss
+          </Button>
         </div>
       </div>
     </div>

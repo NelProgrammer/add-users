@@ -5,6 +5,13 @@
   padding: 5px;
   border: 3px solid #565267;
 }
+.ButtonDiv {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  padding: 5px;
+  border: 3px solid #565267;
+}
 
 .AddUser {
   background-color: rgb(171, 227, 227);

@@ -19,10 +19,7 @@ const App = () => {
       <Card>
         <AddUser usersList={users} setUsers={setUsers} />
       </Card>
-      <Card>
-        {users === undefined && <div className={CSS_App.NoOutput}>Nothing</div>}
-        {users !== undefined && <OutputUsers usersList={users} />}
-      </Card>
+      <Card>{<OutputUsers usersList={users} />}</Card>
     </div>
   );
 };

@@ -5,92 +5,114 @@ import ErrorModal from '../ErrorModal/ErrorModal';
 import Button from '../Button/Button';
 
 const AddUser = (props) => {
-  const [enteredUserName, setEnteredUserName] = useState('');
-  const [enteredUseAge, setEnteredUseAge] = useState('');
-  const [isError, setIsError] = useState(false);
+  const [enteredUserName, setEnteredUserName] = useState();
+  const [enteredUserAge, setEnteredUserAge] = useState();
+  const [inputError, setInputError] = useState();
 
   const handle_formsubmit = (event) => {
     event.preventDefault();
-    const TestUser2Add = {
-      userName: enteredUserName,
-      userAge: +enteredUseAge,
-    };
 
-    if (
-      TestUser2Add.userAge === undefined ||
-      TestUser2Add.userAge === '' ||
-      isNaN(TestUser2Add.userAge) ||
-      TestUser2Add.userName === undefined ||
-      TestUser2Add.userName.trim().length === 0
-    ) {
-      setIsError(true);
-      <ErrorModal displayModal={true} />;
+    if (!enteredUserName || enteredUserName.trim().length === 0) {
+      setInputError({
+        errorTitle: 'Error on User Name',
+        errorMsg: 'User Name can not be empty',
+        errorEntry: 'a Space or Nothing',
+      });
+    } else if (!enteredUserAge || isNaN(+enteredUserAge)) {
+      setInputError({
+        errorTitle: 'Error on Age',
+        errorMsg: 'Enter a valid non-Empty Age',
+        errorEntry: 'Nothing or a Non-Number',
+      });
+    } else if (enteredUserAge < 1) {
+      setInputError({
+        errorTitle: 'Error on Age',
+        errorMsg: 'Age must be greater than 0',
+        errorEntry: enteredUserAge,
+      });
     } else {
-      const user2Add = {
-        userID: props.usersList === undefined ? 1 : props.usersList.length + 1,
-        userName: enteredUserName,
-        userAge: +enteredUseAge,
-      };
-      setIsError(false);
+      setInputError();
       props.setUsers((prevUsersList) =>
-        prevUsersList === undefined ? [user2Add] : [...prevUsersList, user2Add]
+        prevUsersList === undefined
+          ? [
+              {
+                userID: 1,
+                userName: enteredUserName,
+                userAge: +enteredUserAge,
+              },
+            ]
+          : [
+              ...prevUsersList,
+              {
+                userID: props.usersList.length + 1,
+                userName: enteredUserName,
+                userAge: +enteredUserAge,
+              },
+            ]
       );
     }
     setEnteredUserName('');
-    setEnteredUseAge('');
+    setEnteredUserAge('');
   };
 
   const handleChangeUserName = (event) => {
-    const input = event.target.value;
+    let input = event.target.value;
     if (input === undefined || input.trim().length === 0) {
-      setIsError(true);
+      // Do Nothing
     } else {
-      setIsError(false);
       setEnteredUserName(input);
     }
   };
 
   const handleChangeUserAge = (event) => {
-    const input = event.target.value;
+    let input = event.target.value;
     if (isNaN(input) || input === 0) {
-      setIsError(true);
+      // Do Nothing
     } else {
-      setIsError(false);
-      setEnteredUseAge(input);
+      setEnteredUserAge(input);
     }
   };
 
   return (
     <div className={CSS_AddUser.AddUser}>
-      {isError === true && <ErrorModal />}
-      {isError === false && (
-        <form onSubmit={handle_formsubmit}>
-          <div className={CSS_AddUser.InputDiv}>
-            <label htmlFor="userNameInput" className={CSS_AddUser.InputLabel}>
-              <p>User Name</p>
-            </label>
-            <input
-              type="text"
-              id="userNameInput"
-              className={CSS_AddUser.InputBox}
-              onChange={handleChangeUserName}
-            />
-          </div>
-          <div className={CSS_AddUser.InputDiv}>
-            <label htmlFor="userAgeInput" className={CSS_AddUser.InputLabel}>
-              <p>User Age</p>
-            </label>
-            <input
-              type="number"
-              id="userAgeInput"
-              className={CSS_AddUser.InputBox}
-              onChange={handleChangeUserAge}
-            />
-          </div>
-          <div>
-            <Button type="submit">Add User</Button>
-          </div>
-        </form>
+      {
+        <div>
+          <form onSubmit={handle_formsubmit}>
+            <div className={CSS_AddUser.InputDiv}>
+              <label htmlFor="userNameInput" className={CSS_AddUser.InputLabel}>
+                User Name
+              </label>
+              <input
+                type="text"
+                id="userNameInput"
+                className={CSS_AddUser.InputBox}
+                onChange={handleChangeUserName}
+              />
+            </div>
+            <div className={CSS_AddUser.InputDiv}>
+              <label htmlFor="userAgeInput" className={CSS_AddUser.InputLabel}>
+                User Age
+              </label>
+              <input
+                type="number"
+                id="userAgeInput"
+                className={CSS_AddUser.InputBox}
+                onChange={handleChangeUserAge}
+              />
+            </div>
+            <div className={CSS_AddUser.ButtonDiv}>
+              <Button type="submit">Add User</Button>
+            </div>
+          </form>
+        </div>
+      }
+
+      {inputError && (
+        <ErrorModal
+          errorTitle={inputError.errorTitle}
+          errorMsg={inputError.errorMsg}
+          errorEntry={inputError.errorEntry}
+        />
       )}
     </div>
   );
