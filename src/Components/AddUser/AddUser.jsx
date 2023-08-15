@@ -73,6 +73,10 @@ const AddUser = (props) => {
     }
   };
 
+  const handleErrorInput = () => {
+    setInputError(null);
+  };
+
   return (
     <div className={CSS_AddUser.AddUser}>
       {
@@ -109,12 +113,12 @@ const AddUser = (props) => {
         </div>
       }
 
-      {inputError && (
+      {inputError && ( //Exploit the fact calling the display of the Modal depends on this being True instead of using DOM display properties. Sent down the beanstalk.
         <ErrorModal
           errorTitle={inputError.errorTitle}
           errorMsg={inputError.errorMsg}
           errorEntry={inputError.errorEntry}
-          setInputError={setInputError}
+          onConfirm={handleErrorInput}
         />
       )}
     </div>

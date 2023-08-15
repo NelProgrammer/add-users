@@ -20,20 +20,28 @@ const ErrorModal = (props) => {
   };
 
   return (
-    <div className={CSS_ErrorModal.ErrorModal}>
-      <div className={CSS_ErrorModal['modal-content']}>
-        <div className={CSS_ErrorModal['modal-header']}>{props.errorTitle}</div>
-        <div className={CSS_ErrorModal['modal-body']}>
-          <div>{props.errorMsg}</div>
-          <div>You Entered: {props.errorEntry}</div>
-        </div>
-        <div className={CSS_ErrorModal['modal-footer']}>
-          <Button className="close" type="abort" onClick={handleModalClose}>
-            Dismiss
-          </Button>
+    <>
+      <div
+        className={CSS_ErrorModal['backdrop']}
+        onClick={props.onConfirm}
+      ></div>
+      <div className={CSS_ErrorModal.ErrorModal}>
+        <div className={CSS_ErrorModal['modal-content']}>
+          <div className={CSS_ErrorModal['modal-header']}>
+            {props.errorTitle}
+          </div>
+          <div className={CSS_ErrorModal['modal-body']}>
+            <div>{props.errorMsg}</div>
+            <div>You Entered: {props.errorEntry}</div>
+          </div>
+          <div className={CSS_ErrorModal['modal-footer']}>
+            <Button className="close" type="abort" onClick={props.onConfirm}>
+              Dismiss
+            </Button>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

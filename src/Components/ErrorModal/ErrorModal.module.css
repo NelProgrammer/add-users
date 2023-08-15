@@ -1,18 +1,23 @@
 /* The Modal (background) */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.75);
+}
+
 .ErrorModal {
-  display: block; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 100; /* Sit on top */
-  left: 10;
-  top: 10;
-  width: auto; /* Full width */
+  left: 10%;
+  top: 30vh;
+  width: 80%; /* Full width */
   height: auto; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(148, 134, 146); /* Fallback color */
-  -webkit-animation-name: fadeIn; /* Fade in the background */
-  -webkit-animation-duration: 0.4s;
-  animation-name: fadeIn;
-  animation-duration: 0.4s;
 }
 
 /* Modal Content */
@@ -21,9 +26,9 @@
   bottom: 0;
   background-color: #fefefe;
   -webkit-animation-name: slideIn;
-  -webkit-animation-duration: 0.4s;
+  -webkit-animation-duration: 0.9s;
   animation-name: slideIn;
-  animation-duration: 0.4s;
+  animation-duration: 0.9s;
   width: auto;
   height: auto;
 }
@@ -72,18 +77,18 @@
     opacity: 0;
   }
   to {
-    bottom: 0;
+    bottom: 100;
     opacity: 1;
   }
 }
 
 @keyframes slideIn {
   from {
-    bottom: -300px;
+    bottom: 300px;
     opacity: 0;
   }
   to {
-    bottom: 0;
+    top: 500;
     opacity: 1;
   }
 }
