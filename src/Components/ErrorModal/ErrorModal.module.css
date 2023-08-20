@@ -1,36 +1,18 @@
 /* The Modal (background) */
-.backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  z-index: 10;
-  background: rgba(0, 0, 0, 0.75);
-}
 
 .ErrorModal {
   position: fixed; /* Stay in place */
   z-index: 100; /* Sit on top */
   left: 10%;
   top: 30vh;
-  width: 80%; /* Full width */
-  height: auto; /* Full height */
+  width: auto;
+  height: auto;
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(148, 134, 146); /* Fallback color */
-}
-
-/* Modal Content */
-.modal-content {
-  position: fixed;
-  bottom: 0;
-  background-color: #fefefe;
   -webkit-animation-name: slideIn;
   -webkit-animation-duration: 0.9s;
   animation-name: slideIn;
   animation-duration: 0.9s;
-  width: auto;
-  height: auto;
 }
 
 /* The Close Button */
@@ -70,6 +52,15 @@
   color: white;
 }
 
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.75);
+}
 /* Add Animation */
 @-webkit-keyframes slideIn {
   from {

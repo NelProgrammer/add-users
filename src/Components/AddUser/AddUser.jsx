@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import CSS_AddUser from './AddUser.module.css';
-
+import Card from '../Card/Card';
 import ErrorModal from '../ErrorModal/ErrorModal';
 import Button from '../Button/Button';
 
@@ -78,39 +78,37 @@ const AddUser = (props) => {
   };
 
   return (
-    <div className={CSS_AddUser.AddUser}>
+    <Card>
       {
-        <div>
-          <form onSubmit={handle_formsubmit}>
-            <div className={CSS_AddUser.InputDiv}>
-              <label htmlFor="userNameInput" className={CSS_AddUser.InputLabel}>
-                User Name
-              </label>
-              <input
-                type="text"
-                id="userNameInput"
-                value={enteredUserName}
-                className={CSS_AddUser.InputBox}
-                onChange={handleChangeUserName}
-              />
-            </div>
-            <div className={CSS_AddUser.InputDiv}>
-              <label htmlFor="userAgeInput" className={CSS_AddUser.InputLabel}>
-                User Age
-              </label>
-              <input
-                type="number"
-                id="userAgeInput"
-                value={enteredUserAge}
-                className={CSS_AddUser.InputBox}
-                onChange={handleChangeUserAge}
-              />
-            </div>
-            <div className={CSS_AddUser.ButtonDiv}>
-              <Button type="submit">Add User</Button>
-            </div>
-          </form>
-        </div>
+        <form onSubmit={handle_formsubmit} className={CSS_AddUser.AddUser}>
+          <div className={CSS_AddUser.InputDiv}>
+            <label htmlFor="userNameInput" className={CSS_AddUser.InputLabel}>
+              User Name
+            </label>
+            <input
+              type="text"
+              id="userNameInput"
+              value={enteredUserName}
+              className={CSS_AddUser.InputBox}
+              onChange={handleChangeUserName}
+            />
+          </div>
+          <div className={CSS_AddUser.InputDiv}>
+            <label htmlFor="userAgeInput" className={CSS_AddUser.InputLabel}>
+              User Age
+            </label>
+            <input
+              type="number"
+              id="userAgeInput"
+              value={enteredUserAge}
+              className={CSS_AddUser.InputBox}
+              onChange={handleChangeUserAge}
+            />
+          </div>
+          <div className={CSS_AddUser.ButtonDiv}>
+            <Button type="submit">Add User</Button>
+          </div>
+        </form>
       }
 
       {inputError && ( //Exploit the fact calling the display of the Modal depends on this being True instead of using DOM display properties. Sent down the beanstalk.
@@ -121,7 +119,7 @@ const AddUser = (props) => {
           onConfirm={handleErrorInput}
         />
       )}
-    </div>
+    </Card>
   );
 };
 
