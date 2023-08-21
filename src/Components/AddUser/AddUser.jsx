@@ -1,17 +1,63 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import CSS_AddUser from './AddUser.module.css';
 import Card from '../Card/Card';
 import ErrorModal from '../ErrorModal/ErrorModal';
 import Button from '../Button/Button';
 
 const AddUser = (props) => {
-  const [enteredUserName, setEnteredUserName] = useState();
-  const [enteredUserAge, setEnteredUserAge] = useState();
+  const inputNameRef = useRef();
+  const inputAgeRef = useRef();
+
   const [inputError, setInputError] = useState();
 
   const handle_formsubmit = (event) => {
     event.preventDefault();
+    const enteredUserName_Ref = inputNameRef.current.value;
+    const enteredUserAge_Ref = inputAgeRef.current.value;
 
+    if (!enteredUserName_Ref || enteredUserName_Ref.trim().length === 0) {
+      setInputError({
+        errorTitle: 'Error on User Name',
+        errorMsg: 'User Name can not be empty',
+        errorEntry: 'a Space or Nothing',
+      });
+    } else if (!enteredUserAge_Ref || isNaN(+enteredUserAge_Ref)) {
+      setInputError({
+        errorTitle: 'Error on Age',
+        errorMsg: 'Enter a valid non-Empty Age',
+        errorEntry: 'Nothing or a Non-Number',
+      });
+    } else if (enteredUserAge_Ref < 1) {
+      setInputError({
+        errorTitle: 'Error on Age',
+        errorMsg: 'Age must be greater than 0',
+        errorEntry: enteredUserAge_Ref,
+      });
+    } else {
+      setInputError();
+      props.setUsers((prevUsersList) =>
+        prevUsersList === undefined
+          ? [
+              {
+                userID: 1,
+                userName: enteredUserName_Ref,
+                userAge: +enteredUserAge_Ref,
+              },
+            ]
+          : [
+              ...prevUsersList,
+              {
+                userID: props.usersList.length + 1,
+                userName: enteredUserName_Ref,
+                userAge: +enteredUserAge_Ref,
+              },
+            ]
+      );
+      inputNameRef.current.value = '';
+      inputAgeRef.current.value = '';
+    }
+
+    /* Origional State Solution
     if (!enteredUserName || enteredUserName.trim().length === 0) {
       setInputError({
         errorTitle: 'Error on User Name',
@@ -52,25 +98,7 @@ const AddUser = (props) => {
       );
       setEnteredUserName('');
       setEnteredUserAge('');
-    }
-  };
-
-  const handleChangeUserName = (event) => {
-    let input = event.target.value;
-    if (input === undefined || input.trim().length === 0) {
-      // Do Nothing
-    } else {
-      setEnteredUserName(input);
-    }
-  };
-
-  const handleChangeUserAge = (event) => {
-    let input = event.target.value;
-    if (isNaN(input) || input === 0) {
-      // Do Nothing
-    } else {
-      setEnteredUserAge(input);
-    }
+    } */
   };
 
   const handleErrorInput = () => {
@@ -88,9 +116,8 @@ const AddUser = (props) => {
             <input
               type="text"
               id="userNameInput"
-              value={enteredUserName}
               className={CSS_AddUser.InputBox}
-              onChange={handleChangeUserName}
+              ref={inputNameRef}
             />
           </div>
           <div className={CSS_AddUser.InputDiv}>
@@ -100,9 +127,8 @@ const AddUser = (props) => {
             <input
               type="number"
               id="userAgeInput"
-              value={enteredUserAge}
               className={CSS_AddUser.InputBox}
-              onChange={handleChangeUserAge}
+              ref={inputAgeRef}
             />
           </div>
           <div className={CSS_AddUser.ButtonDiv}>
